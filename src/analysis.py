@@ -241,6 +241,7 @@ def analyse(filepath: str):
     # Analyse amount of posts in relation to votes for both subreddits separately
 
     posted_in_pro = metrics[metrics["amount_posts_pro"] > 0]
+    print(f"Amount of users who posted in pro Clinton: {len(posted_in_pro)}")
     posted_in_pro["group"] = np.select([
         posted_in_pro["amount_posts_pro"].lt(10),
         (posted_in_pro["amount_posts_pro"].ge(10)) & (posted_in_pro["amount_posts_pro"].lt(100)),
@@ -255,6 +256,8 @@ def analyse(filepath: str):
         "more than 5000 posts"
     ])
     posted_in_con = metrics[metrics["amount_posts_con"] > 0]
+    print(f"Amount of users who posted in pro Trump: {len(posted_in_con)}")
+
     posted_in_con["group"] = np.select([
         posted_in_con["amount_posts_con"].lt(10),
         (posted_in_con["amount_posts_con"].ge(10)) & (posted_in_con["amount_posts_con"].lt(100)),
